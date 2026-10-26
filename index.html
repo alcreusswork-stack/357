@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>なないろ｜放課後等デイサービス・スポチーク教室</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF6B35;
+    --orange-light: #FF8C5A;
+    --teal: #3DBFB3;
+    --teal-light: #5DD5CA;
+    --yellow: #FFD93D;
+    --purple: #9B5DE5;
+    --pink: #F72585;
+    --green: #4CC9A0;
+    --navy: #1A2E44;
+    --body-bg: #FAFFFE;
+    --text: #1A2E44;
+    --text-mid: #4A5E6E;
+    --text-light: #7A8E9E;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--body-bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== RAINBOW STRIPE ===== */
+  .rainbow-stripe {
+    height: 6px;
+    background: linear-gradient(90deg,
+      #FF6B35 0%, #FF6B35 14.28%,
+      #FFD93D 14.28%, #FFD93D 28.57%,
+      #4CC9A0 28.57%, #4CC9A0 42.85%,
+      #3DBFB3 42.85%, #3DBFB3 57.14%,
+      #9B5DE5 57.14%, #9B5DE5 71.42%,
+      #F72585 71.42%, #F72585 85.71%,
+      #FF8C5A 85.71%, #FF8C5A 100%
+    );
+    width: 100%;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .site-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--orange), var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+
+  .header-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: var(--teal);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ===== HERO IMAGE ===== */
+  .hero-image-wrap {
+    width: 100%;
+    max-height: 520px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== HERO TEXT ===== */
+  .hero-text {
+    background: linear-gradient(160deg, #FFF8F4 0%, #F0FDFB 100%);
+    padding: 52px 20px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,53,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,191,179,0.13), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--orange);
+    background: rgba(255,107,53,0.1);
+    border: 1.5px solid rgba(255,107,53,0.25);
+    border-radius: 20px;
+    padding: 5px 14px;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .hero-title span.highlight {
+    color: var(--orange);
+  }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--text-mid);
+    max-width: 560px;
+    margin: 0 auto 28px;
+    line-height: 1.8;
+  }
+
+  /* ===== SECTION COMMON ===== */
+  .section {
+    padding: 64px 20px;
+  }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .section-label span {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 48px;
+    height: 2px;
+    background: var(--teal);
+    border-radius: 2px;
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    text-align: center;
+    color: var(--navy);
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  /* ===== FEATURE HIGHLIGHT (スポチーク) ===== */
+  .feature-highlight {
+    background: linear-gradient(135deg, var(--navy) 0%, #243B55 100%);
+    padding: 72px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-highlight::before {
+    content: '🌈';
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 5rem;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .feature-highlight-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .feature-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+
+  .feature-kicker::before {
+    content: '★';
+    font-size: 1rem;
+  }
+
+  .feature-highlight .section-title {
+    color: var(--white);
+    text-align: left;
+    margin-bottom: 12px;
+  }
+
+  .feature-highlight .section-title span {
+    color: var(--yellow);
+  }
+
+  .feature-desc {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 36px;
+    max-width: 640px;
+  }
+
+  .feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .feature-card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+  }
+
+  .feature-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+
+  .feature-card-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+  }
+
+  /* ===== STRENGTHS ===== */
+  .strengths {
+    background: var(--white);
+  }
+
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .strength-card {
+    background: var(--body-bg);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    border-top: 4px solid transparent;
+    box-shadow: var(--shadow);
+    transition: box-shadow .2s, transform .2s;
+  }
+
+  .strength-card:nth-child(1) { border-color: var(--orange); }
+  .strength-card:nth-child(2) { border-color: var(--teal); }
+  .strength-card:nth-child(3) { border-color: var(--purple); }
+
+  .strength-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .strength-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+
+  .strength-card:nth-child(1) .strength-icon { background: rgba(255,107,53,0.12); }
+  .strength-card:nth-child(2) .strength-icon { background: rgba(61,191,179,0.12); }
+  .strength-card:nth-child(3) .strength-icon { background: rgba(155,93,229,0.12); }
+
+  .strength-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .strength-text {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* ===== COMING SOON ===== */
+  .coming-soon {
+    background: linear-gradient(135deg, #FFF8F4, #F0FDFB);
+    padding: 48px 20px;
+  }
+
+  .coming-soon-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .coming-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .coming-title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .coming-text {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 620px;
+  }
+
+  /* ===== REVIEWS ===== */
+  .reviews {
+    background: var(--white);
+  }
+
+  .review-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .review-card {
+    background: var(--body-bg);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 12px; right: 20px;
+    font-size: 4rem;
+    color: rgba(61,191,179,0.15);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .review-stars {
+    color: #FFB800;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  /* ===== INFO ===== */
+  .info {
+    background: var(--body-bg);
+  }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+  }
+
+  .info-table tr {
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .info-table tr:last-child { border-bottom: none; }
+
+  .info-table th {
+    width: 28%;
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--teal);
+    background: rgba(61,191,179,0.07);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  .info-table td {
+    padding: 14px 16px;
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  /* ===== MAP ===== */
+  .map-section {
+    background: var(--white);
+    padding: 64px 20px;
+  }
+
+  .map-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .map-responsive {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .map-responsive iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .map-btn-wrap {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: background .2s, transform .2s;
+  }
+
+  .map-btn:hover {
+    background: var(--teal-light);
+    transform: translateY(-2px);
+  }
+
+  /* ===== SNS ===== */
+  .sns-section {
+    background: linear-gradient(160deg, #FFF8F4 0%, #F0FDFB 100%);
+    padding: 56px 20px;
+    text-align: center;
+  }
+
+  .sns-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .sns-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .sns-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: var(--shadow);
+  }
+
+  .sns-link:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .sns-link.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: var(--white);
+  }
+
+  .sns-link svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 20px 24px;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .footer-info {
+    font-size: 0.82rem;
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .footer-official {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-top: 16px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .header-badge { display: none; }
+
+    .hero-image-wrap { max-height: 240px; }
+
+    .feature-highlight .section-title { text-align: center; }
+    .feature-desc { text-align: center; }
+    .feature-kicker { justify-content: center; }
+
+    .info-table th { width: 36%; font-size: 0.82rem; }
+    .info-table td { font-size: 0.82rem; }
+
+    .section { padding: 48px 16px; }
+    .map-section { padding: 48px 16px; }
+    .coming-soon { padding: 40px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Rainbow top stripe -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <a href="#top" class="site-name">なないろ</a>
+    <div class="header-badge">放課後等デイサービス・スポチーク教室</div>
+  </div>
+</header>
+
+<!-- ===== HERO IMAGE ===== -->
+<div class="hero-image-wrap" id="top">
+  <img src="images/hero.png" alt="なないろ 子どもたちが楽しく体を動かす様子" loading="eager">
+</div>
+
+<!-- ===== HERO TEXT ===== -->
+<div class="hero-text">
+  <div class="hero-eyebrow">岐阜県瑞浪市 放課後等デイサービス</div>
+  <h1 class="hero-title">
+    頭も体も、<span class="highlight">ぐんぐん育つ。</span><br>
+    子どもの「楽しい！」が未来を開く。
+  </h1>
+  <p class="hero-sub">
+    なないろは、一人ひとりの子どもの個性を大切にしながら、<br class="pc-only">
+    知能×運動の独自プログラムで心身ともに豊かな成長を<br class="pc-only">
+    サポートする放課後等デイサービスです。
+  </p>
+</div>
+
+<!-- Rainbow stripe section divider -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== FEATURE HIGHLIGHT: スポチーク ===== -->
+<section class="feature-highlight">
+  <div class="feature-highlight-inner">
+    <div class="feature-kicker">なないろのイチオシプログラム</div>
+    <h2 class="section-title">
+      <span>スポチーク</span>で、<br>
+      「動く力」と「考える力」を同時に育む
+    </h2>
+    <p class="feature-desc">
+      なないろが導入している「スポチーク（知能×運動）」は、楽しく体を動かしながら頭を使う独自のプログラム。
+      運動しながら知的な刺激を受けることで、集中力・判断力・自己肯定感が自然と育まれます。
+      「宿題に集中できるようになった」「ストレスが減った」というご家庭からのお声も届いています。
+    </p>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="feature-card-icon">🧠</div>
+        <div class="feature-card-title">知育×運動の融合</div>
+        <div class="feature-card-text">マット運動、ボルダリングなど多彩な運動に知的課題を組み合わせ、楽しみながら脳を刺激します。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🌱</div>
+        <div class="feature-card-title">毎日の積み重ね</div>
+        <div class="feature-card-text">プログラムは毎日実施。小さな「できた！」を積み重ねることで自信と意欲を着実に育みます。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🍱</div>
+        <div class="feature-card-title">食育へのこだわり</div>
+        <div class="feature-card-text">体づくりの土台となる食育にも力を入れ、日々の活動の中で健康習慣を育てます。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🤝</div>
+        <div class="feature-card-title">家庭・学校との連携</div>
+        <div class="feature-card-text">保護者の声を大切にし、学校とも情報共有。地域一体となって子どもの成長を支えます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rainbow stripe section divider -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== STRENGTHS ===== -->
+<section class="section strengths">
+  <div class="section-inner">
+    <div class="section-label"><span>なないろの強み</span></div>
+    <h2 class="section-title">一人ひとりに寄り添う<br>3つのサポート</h2>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">📋</div>
+        <div class="strength-title">オーダーメイド療育</div>
+        <div class="strength-text">一人ひとりの興味やニーズに合わせ、個別・少人数・集団を組み合わせた最適なプログラムを作成します。子どもの可能性を引き出す環境づくりを大切にしています。</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">👨‍🏫</div>
+        <div class="strength-title">専門スタッフによる支援</div>
+        <div class="strength-text">経験豊富なスタッフが、子どもの個性を尊重しながら「できた！」という自信を育む専門的なサポートを行います。家族や先生のように一人ひとりに親身に関わります。</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">💛</div>
+        <div class="strength-title">家族への手厚い伴走</div>
+        <div class="strength-text">日々のフィードバックに加え、保護者の悩みにも寄り添う「専門的応援団」として家庭との連携を重視。保護者の方が安心して預けられる環境を整えています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMING SOON ===== -->
+<div class="coming-soon">
+  <div class="coming-soon-inner">
+    <div class="coming-badge">🔜 準備中の新サービス</div>
+    <div class="coming-title">リハビリ専門家によるアセスメントを導入予定</div>
+    <div class="coming-text">
+      理学療法士や言語聴覚士など、リハビリの専門家による定期的なアセスメントを導入に向けて準備中です。
+      さらに専門的な視点から、お子さまの発達をきめ細かくサポートできる体制を整えていきます。
+    </div>
+  </div>
+</div>
+
+<!-- Rainbow stripe section divider -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== REVIEWS ===== -->
+<section class="section reviews">
+  <div class="section-inner">
+    <div class="section-label"><span>保護者の声</span></div>
+    <h2 class="section-title">子どもたちの笑顔が<br>届いています</h2>
+    <div class="review-list">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          幼児から中学生まで様々な運動のできる体操教室です。マット運動だけでなく、ボルダリングなどもあり楽しく運動できます。また、知育要素を取り入れた運動メニューを取り入れており身体能力だけでなく脳トレの効果も期待できます。
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          とにかくこどもが楽しく通っています。洗練されたプログラムが組まれているそうです。確かに通い出してから、宿題をすごく集中して取り組むようになりました。ガミガミ言うことが減ったので嬉しいです。本人もストレスが減ったと思います。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rainbow stripe section divider -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== BASIC INFO ===== -->
+<section class="section info">
+  <div class="section-inner">
+    <div class="section-label"><span>施設情報</span></div>
+    <h2 class="section-title">アクセス・ご利用案内</h2>
+    <table class="info-table">
+      <tr>
+        <th>施設名</th>
+        <td>なないろ</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>〒509-6124<br>岐阜県瑞浪市一色町４丁目１２</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><a href="tel:0572567716" style="color:var(--teal); font-weight:700;">0572-56-7716</a></td>
+      </tr>
+      <tr>
+        <th>休校日</th>
+        <td>日曜日、祝日、１２月２９日〜１月３日、８月１３日〜１５日</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="map-section">
+  <div class="map-wrap">
+    <div class="section-label"><span>地図</span></div>
+    <h2 class="section-title" style="margin-bottom:24px;">アクセスマップ</h2>
+    <div class="map-responsive">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3253.925123486786!2d137.251037!3d35.3575045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6003442b0b071067%3A0x24e76d578f3b8e62!2z44Gq44Gq44GE44KN44OT44Or44CO44Gq44Gq44GE44KN77yI5pS-6Kqy5b6M562J44OH44Kk44K144O844OT44K577yJ44CP44CO44K544Od44OB44O844Kv5pWZ5a6k77yI6YGL5YuV5pWZ5a6k44CB5L2T5pON5pWZ5a6k77yJ44CP!5e0!3m2!1sja!2sjp!4v1792474032955!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="なないろ Google マップ"></iframe>
+    </div>
+    <div class="map-btn-wrap">
+      <a href="https://www.google.com/maps/place/%E3%81%AA%E3%81%AA%E3%81%84%E3%82%8D%E3%83%93%E3%83%AB%E3%80%8E%E3%81%AA%E3%81%AA%E3%81%84%E3%82%8D%EF%BC%88%E6%94%BE%E8%AA%B2%E5%BE%8C%E7%AD%89%E3%83%87%E3%82%A4%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%EF%BC%89%E3%80%8F%E3%80%8E%E3%82%B9%E3%83%9D%E3%83%81%E3%83%BC%E3%82%AF%E6%95%99%E5%AE%A4%EF%BC%88%E9%81%8B%E5%8B%95%E6%95%99%E5%AE%A4%E3%80%81%E4%BD%93%E6%93%8D%E6%95%99%E5%AE%A4%EF%BC%89%E3%80%8F/@35.3575045,137.251037,17z/data=!3m1!4b1!4m6!3m5!1s0x6003442b0b071067:0x24e76d578f3b8e62!8m2!3d35.3575045!4d137.251037!16s%2Fg%2F1tj7_x5_?authuser=0&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Googleマップで見る
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Rainbow stripe section divider -->
+<div class="rainbow-stripe"></div>
+
+<!-- ===== SNS ===== -->
+<section class="sns-section">
+  <div class="sns-inner">
+    <div class="section-label"><span>SNS</span></div>
+    <h2 class="section-title" style="margin-bottom:8px;">日々の様子はSNSで発信中！</h2>
+    <p style="font-size:0.9rem; color:var(--text-mid);">子どもたちの笑顔あふれる毎日をお届けしています。</p>
+    <div class="sns-links">
+      <!-- Instagram公式SVGアイコン -->
+      <a href="https://www.instagram.com/nanairo_aisuru/" target="_blank" rel="noopener noreferrer" class="sns-link instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="rainbow-stripe"></div>
+<footer>
+  <div class="footer-name">なないろ</div>
+  <div class="footer-info">
+    〒509-6124 岐阜県瑞浪市一色町４丁目１２<br>
+    TEL: <a href="tel:0572567716" style="color:var(--teal);">0572-56-7716</a>　／　休校日：日曜日、祝日、１２月２９日〜１月３日、８月１３日〜１５日
+  </div>
+  <div class="footer-copy">© なないろ All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
